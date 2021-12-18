@@ -1,11 +1,7 @@
 from artiq.experiment import *
 import sys
-import foo
-# confirm location at import time
-print(foo.__file__)
-# submodule import
-import foo.bar
-print(foo.bar.__file__)
+from foo.foo import Foo
+from foo.bar.bar import Bar
 
 
 class TestExp(EnvExperiment):
@@ -13,9 +9,8 @@ class TestExp(EnvExperiment):
         self.setattr_device('scheduler')
         
     def run(self):
-        # confirm locations at runtime
-        print(foo.__file__)
-        print(foo.bar.__file__)
+        Foo()
+        Bar()
         # double check scheduler status dict
         print(self.scheduler.get_status())
         # check the path
