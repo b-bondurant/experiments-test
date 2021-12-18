@@ -1,4 +1,5 @@
 from artiq.experiment import *
+import sys
 import foo
 # confirm location at import time
 print(foo.__file__)
@@ -17,3 +18,5 @@ class TestExp(EnvExperiment):
         print(foo.bar.__file__)
         # double check scheduler status dict
         print(self.scheduler.get_status())
+        # check the path
+        print(sys.path)
